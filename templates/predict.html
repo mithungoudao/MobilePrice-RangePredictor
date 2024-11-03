@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Mobile Price Range</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            flex: 7; /* 70% of the width */
+            margin-right: 10px;
+            font-weight: bold;
+            text-align: right; /* Align label text to the right */
+        }
+
+        input[type="number"] {
+            flex: 3; /* 30% of the width */
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .form-group {
+                flex-direction: column; /* Stack vertically on small screens */
+            }
+
+            label {
+                margin-bottom: 5px; /* Adjust margin for vertical layout */
+                text-align: left; /* Align label text to the left */
+            }
+
+            input[type="number"] {
+                width: 100%; /* Full width for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predict Mobile Price Range</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="battery_power">Battery Power:</label>
+                <input type="number" name="battery_power" required>
+            </div>
+
+            <div class="form-group">
+                <label for="blue">Bluetooth (1 for Yes, 0 for No):</label>
+                <input type="number" name="blue" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label for="clock_speed">Clock Speed (in GHz):</label>
+                <input type="number" name="clock_speed" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dual_sim">Dual SIM (1 for Yes, 0 for No):</label>
+                <input type="number" name="dual_sim" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label for="fc">Front Camera (in MP):</label>
+                <input type="number" name="fc" required>
+            </div>
+
+            <div class="form-group">
+                <label for="four_g">4G (1 for Yes, 0 for No):</label>
+                <input type="number" name="four_g" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label for="int_memory">Internal Memory (in GB):</label>
+                <input type="number" name="int_memory" required>
+            </div>
+
+            <div class="form-group">
+                <label for="m_dep">Mobile Depth (in cm):</label>
+                <input type="number" name="m_dep" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile_wt">Mobile Weight (in grams):</label>
+                <input type="number" name="mobile_wt" required>
+            </div>
+
+            <div class="form-group">
+                <label for="n_cores">Number of Cores:</label>
+                <input type="number" name="n_cores" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pc">Primary Camera (in MP):</label>
+                <input type="number" name="pc" required>
+            </div>
+
+            <div class="form-group">
+                <label for="px_height">Pixel Height:</label>
+                <input type="number" name="px_height" required>
+            </div>
+
+            <div class="form-group">
+                <label for="px_width">Pixel Width:</label>
+                <input type="number" name="px_width" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ram">RAM (in MB):</label>
+                <input type="number" name="ram" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sc_h">Screen Height (in cm):</label>
+                <input type="number" name="sc_h" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sc_w">Screen Width (in cm):</label>
+                <input type="number" name="sc_w" required>
+            </div>
+
+            <div class="form-group">
+                <label for="talk_time">Talk Time (in hours):</label>
+                <input type="number" name="talk_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="three_g">3G (1 for Yes, 0 for No):</label>
+                <input type="number" name="three_g" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label for="touch_screen">Touch Screen (1 for Yes, 0 for No):</label>
+                <input type="number" name="touch_screen" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label for="wifi">WiFi (1 for Yes, 0 for No):</label>
+                <input type="number" name="wifi" required min="0" max="1">
+            </div>
+
+            <button type="submit" class="btn">Predict Price Segment</button>
+        </form>
+    </div>
+</body>
+</html>
